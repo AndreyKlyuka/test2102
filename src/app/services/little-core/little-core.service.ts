@@ -31,7 +31,7 @@ export class LittleCoreService {
 
   async getStats(ids: number[]) {
     const response = await fetch(
-      `${this.endpoint}stats?postseason=true&per_page=100${this.clarifyPlayers(
+      `${this.endpoint}stats?&postseason=true${this.clarifyPlayers(
         ids
       )}`,
       {
@@ -40,9 +40,10 @@ export class LittleCoreService {
     );
     const playersStats = (await response.text()) as any;
     playerStatsPremap(playersStats);
-    return playersStats.data.map((playerStats: StatsBE) =>
-      this.playerStatsMapper(playerStats)
+    const result = JSON.parse(playersStats).data.map((playerStats: StatsBE) =>
+        this.playerStatsMapper(playerStats)
     );
+    return result
   }
 
   //
@@ -51,7 +52,7 @@ export class LittleCoreService {
 
   clarifyPlayers(ids: number[]) {
     return ids.reduce(
-      (playersParams: string, id: number) => `${playersParams}&player_id=${id}`,
+      (playersParams: string, id: number) => `${playersParams}&player_ids[]=${id}`,
       ''
     );
   }
@@ -73,6 +74,9 @@ export class LittleCoreService {
   playerStatsMapper(playerStatsBE: StatsBE): Stats {
     return {
       id: playerStatsBE.player.id,
+      name: `${playerStatsBE.player.first_name} ${playerStatsBE.player.last_name}, ${playerStatsBE.team.abbreviation}`,
+      team: playerStatsBE.team.full_name,
+      gp: 5,
       fg: playerStatsBE.ft_pct,
       min: playerStatsBE.min,
       pts: playerStatsBE.pts,

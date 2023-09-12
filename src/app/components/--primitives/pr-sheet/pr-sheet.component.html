@@ -1,18 +1,21 @@
 <header>
-    <li class="slot-2">name</li>
-    <li class="slot-2">team</li>
+    <li class="slot-2">NAME</li>
+    <li class="slot-2">TEAM</li>
     <li class="slot-2">GP</li>
     <li class="slot-2">MIN</li>
     <li class="slot-2">PTS</li>
     <li class="slot-2">FG</li>
 </header>
-<ul>
+<ul *ngIf="playersStats.length; else noData"  >
     <ol *ngFor="let playersStat of playersStats">
-        <li class="slot-1">undefined</li>
-        <li class="slot-1">undefined</li>
-        <li class="slot-1">undefined</li>
-        <li class="slot-1">{{playersStat.min}}</li>
-        <li class="slot-1">{{playersStat.pts}}</li>
-        <li class="slot-1">{{playersStat.fg}}</li>
+        <li class="slot-1">{{playersStat.name}}</li>
+        <li class="slot-1">{{playersStat.team}}</li>
+        <li class="slot-1">{{playersStat.gp || '-'}}</li>
+        <li class="slot-1">{{playersStat.min || '-'}}</li>
+        <li class="slot-1">{{playersStat.pts || '-'}}</li>
+        <li class="slot-1">{{(playersStat.fg | percent) || '-'}}</li>
     </ol>
 </ul>
+<ng-template #noData>
+   <span>The table is empty</span>
+</ng-template>

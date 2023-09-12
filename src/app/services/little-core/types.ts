@@ -55,7 +55,10 @@ export type Player = {
 
 export type Stats = {
   id: number;
-  fg: number;
+  name: string;
+  team: string;
+  gp: number;
   min: string;
   pts: number;
+  fg: number;
 };

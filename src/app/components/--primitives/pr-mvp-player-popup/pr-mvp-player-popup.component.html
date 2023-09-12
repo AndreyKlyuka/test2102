@@ -1,0 +1,29 @@
+<div *ngIf="mvpPlayer" class="popup">
+    <div class="popup-title">
+        <span>MVP PLAYER</span>
+        <span class="title">{{mvpPlayer.name}}</span>
+    </div>
+    <div  class="popup-data">
+        <div class="data-item">
+            <div class="data-name">TEAM</div>
+            <div class="data-value">{{normalizeStat(mvpPlayer.team)}}</div>
+        </div>
+        <div class="data-item">
+            <div class="data-name">PTS</div>
+            <div class="data-value">{{normalizeStat(mvpPlayer.pts)}}</div>
+        </div>
+        <div class="data-item">
+            <div class="data-name">GP</div>
+            <div class="data-value">{{normalizeStat(mvpPlayer.gp)}}</div>
+        </div>
+        <div class="data-item">
+            <div class="data-name">FG%</div>
+            <div class="data-value">{{normalizeStat(mvpPlayer.fg)}}</div>
+        </div>
+        <div class="data-item">
+            <div class="data-name">MIN</div>
+            <div class="data-value">{{normalizeStat(mvpPlayer.min)}}</div>
+        </div>
+    </div>
+</div>
+

@@ -11,9 +11,10 @@
 <div class="sheet-wrapper">
     <h1>
         NBA <br>
-        players board
+        last season players board
     </h1>
     <app-pr-sheet
     [players]="activePlayers"
     ></app-pr-sheet>
+    <app-pr-mvp-player-popup [mvpPlayer]="popupMvpPlayerData" class="popup"></app-pr-mvp-player-popup>
 </div>

@@ -44,9 +44,15 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        position: relative;
 
         > h1 {
             margin-bottom: calc(var(--baseline) + var(--subline) * 2);
         }
     }
+}
+.popup{
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
